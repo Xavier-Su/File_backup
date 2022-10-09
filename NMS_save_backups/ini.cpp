@@ -2,6 +2,7 @@
 #include "ini.h"
 #include <stdio.h>
 #include <string.h>
+#include <QFile>
 /*
     * 函数名：         GetIniKeyString
     * 入口参数：        title
@@ -13,8 +14,12 @@
     * 返回值：         找到需要查的值则返回正确结果 0
     *                  否则返回-1
     */
-int GetIniKeyString( char const*title, char const*key, char const*filename, char *buf)
+int GetIniKeyString( QString Qtitle, QString Qkey, QString Qfilename, char *buf)
 {
+    char const*title=QStringTochar(Qtitle);
+    char const*key=QStringTochar(Qkey);
+    char const*filename=QStringTochar(Qfilename);
+
     FILE *fp;
     int  flag = 0;
     char sTitle[64], *wTmp;
@@ -63,8 +68,13 @@ int GetIniKeyString( char const*title, char const*key, char const*filename, char
     * 返回值：         成功返回  0
     *                  否则返回 -1
     */
-int PutIniKeyString(const char *title,const char *key,const char *val,const char *filename)
+int PutIniKeyString(QString Qtitle,QString Qkey,QString Qval,QString Qfilename)
 {
+    char const*title=QStringTochar(Qtitle);
+    char const*key=QStringTochar(Qkey);
+    char const*val=QStringTochar(Qval);
+    char const*filename=QStringTochar(Qfilename);
+
     FILE *fpr, *fpw;
     int  flag = 0;
     char sLine[1024], sTitle[32], *wTmp;
@@ -93,10 +103,19 @@ int PutIniKeyString(const char *title,const char *key,const char *val,const char
     fclose(fpr);
     fclose(fpw);
     sprintf(sLine, "%s.tmp", filename);
-    printf("sLine%s\n",sLine);
-    printf("filename%s\n",filename);
-    int num=rename(sLine, filename);
-    printf("rename%d\n",num);
-    return rename(sLine, filename);// 将临时文件更新到原文件
+
+    bool remove=QFile::remove(filename);
+    if (!remove){printf("remove error!");return -1;}
+    bool rename=QFile::rename(sLine, filename);
+    if (!rename){printf("rename error!");return -2;}
+//    return rename(sLine, filename);// 将临时文件更新到原文件
+    return 0;
+}
+
+char* QStringTochar(QString qstring)
+{
+    QByteArray path = qstring.toLatin1(); // must
+    return path.data();
+
 }
 

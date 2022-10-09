@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QDir>
 #include <QStandardPaths>
+#include <QCoreApplication>
 QT_BEGIN_NAMESPACE
 namespace Ui { class menu; }
 QT_END_NAMESPACE
@@ -29,6 +30,7 @@ private:
     QString notice="Which media will play";
     QString path=QDir::homePath()+"/AppData/Roaming/HelloGames/NMS";
     QString path_after="C:/";
+    QString ini_path=QCoreApplication::applicationDirPath()+"/test.ini";
 
 
 };

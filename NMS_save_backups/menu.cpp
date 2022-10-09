@@ -16,7 +16,13 @@ menu::menu(QWidget *parent)
     char buff[100];
     int ret;
 
-    ret = GetIniKeyString("path","recovery_path ","D:/Github/QT/NMS_save_backups/NMS_save_backups/test.ini",buff);
+//    QString ini_path=QCoreApplication::applicationDirPath();
+//    char *ini_path=QStringTochar(QCoreApplication::applicationDirPath()+"/test.ini");
+//    printf("ini_path=%s",ini_path);
+
+
+
+    ret = GetIniKeyString("path","recovery_path ",ini_path,buff);
     ui->lineEdit->setText(buff);
 }
 
@@ -24,7 +30,6 @@ menu::~menu()
 {
     delete ui;
 }
-
 
 
 void menu::on_open_clicked()
@@ -35,11 +40,11 @@ void menu::on_open_clicked()
         return;
     }
     if(mediafile.count()!=0){
-//        ui->listWidget->addItems(mediafile);
         ui->lineEdit->setText(mediafile);
     }
 
-    PutIniKeyString("study","university ","88888","D:/Github/QT/NMS_save_backups/NMS_save_backups/test.ini");
+//    char*  recovery_path=QStringTochar(mediafile);
+    PutIniKeyString("path","recovery_path ",mediafile,ini_path);
 
     this->update();
 }
