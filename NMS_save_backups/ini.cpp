@@ -1,4 +1,5 @@
 /*ini.c*/
+#include "ini.h"
 #include <stdio.h>
 #include <string.h>
 /*
@@ -92,6 +93,10 @@ int PutIniKeyString(const char *title,const char *key,const char *val,const char
     fclose(fpr);
     fclose(fpw);
     sprintf(sLine, "%s.tmp", filename);
+    printf("sLine%s\n",sLine);
+    printf("filename%s\n",filename);
+    int num=rename(sLine, filename);
+    printf("rename%d\n",num);
     return rename(sLine, filename);// 将临时文件更新到原文件
 }
 

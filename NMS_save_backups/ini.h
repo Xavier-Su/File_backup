@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <QString>
 
 int GetIniKeyString( char const*title, char const*key, char const*filename, char *buf);
 

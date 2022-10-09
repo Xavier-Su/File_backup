@@ -12,6 +12,12 @@ menu::menu(QWidget *parent)
     , ui(new Ui::menu)
 {
     ui->setupUi(this);
+
+    char buff[100];
+    int ret;
+
+    ret = GetIniKeyString("path","recovery_path ","D:/Github/QT/NMS_save_backups/NMS_save_backups/test.ini",buff);
+    ui->lineEdit->setText(buff);
 }
 
 menu::~menu()
@@ -32,6 +38,9 @@ void menu::on_open_clicked()
 //        ui->listWidget->addItems(mediafile);
         ui->lineEdit->setText(mediafile);
     }
+
+    PutIniKeyString("study","university ","88888","D:/Github/QT/NMS_save_backups/NMS_save_backups/test.ini");
+
     this->update();
 }
 
@@ -54,6 +63,8 @@ void menu::on_open_after_clicked()
     QString curPath = QDir::currentPath();
     ui->lineEdit->setText(curPath);
     PutIniKeyString("path","backup_path",path_now,"D:/Github/QT/NMS_save_backups/NMS_save_backups/test.ini");
+    PutIniKeyString("study","university ","88888","D:/Github/QT/NMS_save_backups/NMS_save_backups/test.ini");
+
     this->update();
 
 }
@@ -78,8 +89,9 @@ void menu::on_backup_clicked()
 //    printf("ret:%d,%s\n",ret,buff);
 
     copy copyfile;
+    copyfile.isDirExistOrMake("C:/game/back/20221009");
     copyfile.copyFile("C:/game/1/2.txt","C:/game/4.txt",true);
     copyfile.copyDirectory("C:/game/1","C:/game/back",true);
-    copyfile.isDirExistOrMake("C:/game/back/20221009");
+
 
 }
