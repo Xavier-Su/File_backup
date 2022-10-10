@@ -8,6 +8,7 @@
 #include <QString>
 #include <QPushButton>
 #include <QSettings>
+#include <QDateTime>
 menu::menu(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::menu)
@@ -60,6 +61,7 @@ void menu::on_open_clicked()
     }
 
     setting.setValue("path/recovery_path",mediafile);
+    setting.sync();
 
     QString value_path=setting.value("path/recovery_path").toString();
     ui->lineEdit->setText(value_path);
@@ -90,6 +92,7 @@ void menu::on_open_after_clicked()
     }
 
     setting.setValue("path/backup_path",mediafile_after);
+    setting.sync();
 
     QString value_path=setting.value("path/backup_path").toString();
     ui->lineEdit_2->setText(value_path);
@@ -99,13 +102,17 @@ void menu::on_open_after_clicked()
 
 void menu::on_backup_clicked()
 {
-
+    QDateTime dateTime(QDateTime::currentDateTime());
+    QString dir_name = dateTime.toString("yyyy_MM_dd_hh_mm_s");
+     qDebug()<<"qStr="<<dir_name<<endl;
     copy copyfile;
-    copyfile.isDirExistOrMake(path_after+"/20221010");
+    QString dir_now=path_after+"/"+dir_name;
+    copyfile.isDirExistOrMake(dir_now);
 //    copyfile.copyFile("C:/game/1/2.txt","C:/game/4.txt",true);
     qDebug()<<"path="<<path<<endl;
     qDebug()<<"path="<<path_after<<endl;
-    copyfile.copyDirectory(path,path_after,true);
+    qDebug()<<"path="<<dir_now<<endl;
+    copyfile.copyDirectory(path,dir_now,true);
 
 
 }
