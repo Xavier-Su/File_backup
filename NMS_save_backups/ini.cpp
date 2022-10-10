@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <QFile>
+#include<QTextCodec>
 /*
     * 函数名：         GetIniKeyString
     * 入口参数：        title
@@ -19,6 +20,7 @@ int GetIniKeyString( QString Qtitle, QString Qkey, QString Qfilename, char *buf)
     char const*title=QStringTochar(Qtitle);
     char const*key=QStringTochar(Qkey);
     char const*filename=QStringTochar(Qfilename);
+    printf("file=%s\n",filename);
 
     FILE *fp;
     int  flag = 0;
@@ -114,7 +116,8 @@ int PutIniKeyString(QString Qtitle,QString Qkey,QString Qval,QString Qfilename)
 
 char* QStringTochar(QString qstring)
 {
-    QByteArray path = qstring.toLatin1(); // must
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("GBK"));
+    QByteArray path = qstring.toLocal8Bit(); // must
     return path.data();
 
 }

@@ -2,6 +2,7 @@
 #include "ini.h"
 #include "copy.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include "ui_menu.h"
 #include <QFileDialog>
 #include <QString>
@@ -13,17 +14,11 @@ menu::menu(QWidget *parent)
 {
     ui->setupUi(this);
 
-    char buff[100];
-    int ret;
-
-//    QString ini_path=QCoreApplication::applicationDirPath();
-//    char *ini_path=QStringTochar(QCoreApplication::applicationDirPath()+"/test.ini");
-//    printf("ini_path=%s",ini_path);
-
-
-
-    ret = GetIniKeyString("path","recovery_path ",ini_path,buff);
-    ui->lineEdit->setText(buff);
+    char buff1[512];
+    GetIniKeyString("path","recovery_path ",ini_path,buff1);
+    printf("buff1=%s\n",buff1);
+    ui->lineEdit->setText(buff1);
+//    this->update();
 }
 
 menu::~menu()
@@ -43,9 +38,12 @@ void menu::on_open_clicked()
         ui->lineEdit->setText(mediafile);
     }
 
-//    char*  recovery_path=QStringTochar(mediafile);
+
     PutIniKeyString("path","recovery_path ",mediafile,ini_path);
 
+    char buff2[100];
+    GetIniKeyString("path","recovery_path ",ini_path,buff2);
+    ui->lineEdit_2->setText(buff2);
     this->update();
 }
 
