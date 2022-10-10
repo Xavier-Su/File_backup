@@ -116,3 +116,12 @@ void menu::on_backup_clicked()
 
 
 }
+
+void menu::on_recovery_clicked()
+{
+    QString dir_now=path+"_backup";
+    copy copyfile;
+    copyfile.isDirExistOrMake(dir_now);
+    copyfile.copyDirectory(path,dir_now,true);
+        qDebug()<<"path="<<dir_now<<endl;
+}

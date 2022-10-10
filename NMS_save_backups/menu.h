@@ -26,6 +26,8 @@ private slots:
 
     void on_backup_clicked();
 
+    void on_recovery_clicked();
+
 private:
     Ui::menu *ui;
     QString notice="Which media will play";
