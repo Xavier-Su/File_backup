@@ -9,6 +9,7 @@
 #include <QPushButton>
 #include <QSettings>
 #include <QDateTime>
+#include <QMessageBox>
 menu::menu(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::menu)
@@ -112,7 +113,19 @@ void menu::on_backup_clicked()
     qDebug()<<"path="<<path<<endl;
     qDebug()<<"path="<<path_after<<endl;
     qDebug()<<"path="<<dir_now<<endl;
-    copyfile.copyDirectory(path,dir_now,true);
+    bool back_ok=copyfile.copyDirectory(path,dir_now,true);
+
+    if(back_ok){
+        QMessageBox::information(this,tr("备份提示"),tr("备份成功！"),
+                   QMessageBox::Ok,
+                   QMessageBox::Ok);
+    }
+    if(!back_ok){
+        QMessageBox::information(this,tr("备份提示"),tr("备份失败！"),
+                   QMessageBox::Cancel,
+                   QMessageBox::Cancel);
+    }
+
 
 
 }
@@ -124,4 +137,8 @@ void menu::on_recovery_clicked()
     copyfile.isDirExistOrMake(dir_now);
     copyfile.copyDirectory(path,dir_now,true);
         qDebug()<<"path="<<dir_now<<endl;
+    QMessageBox::information(this,tr("还原提示"),tr("还原成功"),
+               QMessageBox::Ok | QMessageBox::Cancel,
+               QMessageBox::Ok);
+
 }
