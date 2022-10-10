@@ -5,6 +5,7 @@
 #include <QDir>
 #include <QStandardPaths>
 #include <QCoreApplication>
+#include <QDebug>
 QT_BEGIN_NAMESPACE
 namespace Ui { class menu; }
 QT_END_NAMESPACE

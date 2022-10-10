@@ -7,18 +7,30 @@
 #include <QFileDialog>
 #include <QString>
 #include <QPushButton>
-
+#include <QSettings>
 menu::menu(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::menu)
 {
     ui->setupUi(this);
 
-    char buff1[512];
-    GetIniKeyString("path","recovery_path ",ini_path,buff1);
-    printf("buff1=%s\n",buff1);
-    ui->lineEdit->setText(buff1);
-//    this->update();
+    QSettings setting(ini_path,QSettings::IniFormat);
+    QString recovery_path=setting.value("path/recovery_path").toString();
+    if (recovery_path.length()>1)
+    {
+        path=recovery_path;
+        ui->lineEdit->setText(recovery_path);
+    }
+    QString backup_path=setting.value("path/backup_path").toString();
+    if (backup_path.length()>1)
+    {
+        path_after=backup_path;
+        ui->lineEdit->setText(backup_path);
+    }
+    ui->lineEdit->setText(recovery_path);
+    ui->lineEdit_2->setText(backup_path);
+
+
 }
 
 menu::~menu()
@@ -30,6 +42,15 @@ menu::~menu()
 void menu::on_open_clicked()
 {
     this->update();
+
+    QSettings setting(ini_path,QSettings::IniFormat);
+    QString recovery_path=setting.value("path/recovery_path").toString();
+    if (recovery_path.length()>1)
+    {
+        path=recovery_path;
+        ui->lineEdit->setText(path);
+    }
+
     QString mediafile = QFileDialog::getExistingDirectory(this,notice,path);
     if(mediafile.length()<=0){
         return;
@@ -38,12 +59,10 @@ void menu::on_open_clicked()
         ui->lineEdit->setText(mediafile);
     }
 
+    setting.setValue("path/recovery_path",mediafile);
 
-    PutIniKeyString("path","recovery_path ",mediafile,ini_path);
-
-    char buff2[100];
-    GetIniKeyString("path","recovery_path ",ini_path,buff2);
-    ui->lineEdit_2->setText(buff2);
+    QString value_path=setting.value("path/recovery_path").toString();
+    ui->lineEdit->setText(value_path);
     this->update();
 }
 
@@ -51,50 +70,42 @@ void menu::on_open_clicked()
 void menu::on_open_after_clicked()
 {
     this->update();
+
+    QSettings setting(ini_path,QSettings::IniFormat);
+    QString backup_path=setting.value("path/backup_path").toString();
+    if (backup_path.length()>1)
+    {
+        path_after=backup_path;
+        ui->lineEdit_2->setText(path_after);
+    }
+
+
+
     QString mediafile_after = QFileDialog::getExistingDirectory(this,notice,path_after);
     if(mediafile_after.length()<=0){
         return;
     }
     if(mediafile_after.count()!=0){
-//        ui->listWidget->addItems(mediafile);
         ui->lineEdit_2->setText(mediafile_after);
     }
-    char*  path_now;
-    QByteArray path = mediafile_after.toLatin1(); // must
-    path_now=path.data();
 
-    QString curPath = QDir::currentPath();
-    ui->lineEdit->setText(curPath);
-    PutIniKeyString("path","backup_path",path_now,"D:/Github/QT/NMS_save_backups/NMS_save_backups/test.ini");
-    PutIniKeyString("study","university ","88888","D:/Github/QT/NMS_save_backups/NMS_save_backups/test.ini");
+    setting.setValue("path/backup_path",mediafile_after);
 
+    QString value_path=setting.value("path/backup_path").toString();
+    ui->lineEdit_2->setText(value_path);
     this->update();
 
 }
 
 void menu::on_backup_clicked()
 {
-    char buff[100];
-    int ret;
-
-    ret = GetIniKeyString("path","backup_path","D:/Github/QT/NMS_save_backups/NMS_save_backups/test.ini",buff);
-    ui->lineEdit->setText(buff);
-//    printf("ret:%d,%s\n",ret,buff);
-
-
-//    ret = GetIniKeyString("study","highschool","test.ini",buff);
-//    ui->lineEdit_2->setText(buff);
-////    printf("ret:%d,%s\n",ret,buff);
-
-    ret = PutIniKeyString("study","highschool","6666","D:/Github/QT/NMS_save_backups/NMS_save_backups/test.ini");
-    printf("put ret:%d\n",ret);
-//    ret = GetIniKeyString("study","highschool","test.ini",buff);
-//    printf("ret:%d,%s\n",ret,buff);
 
     copy copyfile;
-    copyfile.isDirExistOrMake("C:/game/back/20221009");
-    copyfile.copyFile("C:/game/1/2.txt","C:/game/4.txt",true);
-    copyfile.copyDirectory("C:/game/1","C:/game/back",true);
+    copyfile.isDirExistOrMake(path_after+"/20221010");
+//    copyfile.copyFile("C:/game/1/2.txt","C:/game/4.txt",true);
+    qDebug()<<"path="<<path<<endl;
+    qDebug()<<"path="<<path_after<<endl;
+    copyfile.copyDirectory(path,path_after,true);
 
 
 }

@@ -3,7 +3,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <QFile>
-#include<QTextCodec>
+#include <QTextCodec>
+#include <QDebug>
 /*
     * 函数名：         GetIniKeyString
     * 入口参数：        title
@@ -106,10 +107,24 @@ int PutIniKeyString(QString Qtitle,QString Qkey,QString Qval,QString Qfilename)
     fclose(fpw);
     sprintf(sLine, "%s.tmp", filename);
 
-    bool remove=QFile::remove(filename);
-    if (!remove){printf("remove error!");return -1;}
-    bool rename=QFile::rename(sLine, filename);
-    if (!rename){printf("rename error!");return -2;}
+    printf("\n sLine=%s\n,filename=%s",sLine,filename);
+
+
+//    QFile ini_file(filename);
+//    qDebug()<<"remove";
+//    ini_file.remove();
+//    ini_file.close();
+
+    QFile ini_file_tmp(sLine);
+    qDebug()<<"rename";
+    ini_file_tmp.rename(filename);
+    ini_file_tmp.close();
+
+//    bool remove=QFile::remove(filename);
+//    QFile::close();
+//    if (!remove){printf("\nremove error!\n");return -1;}
+//    bool rename=QFile::rename(sLine, filename);
+//    if (!rename){printf("\nrename error!\n");qDebug()<<rename;return -2;}
 //    return rename(sLine, filename);// 将临时文件更新到原文件
     return 0;
 }
