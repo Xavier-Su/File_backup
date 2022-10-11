@@ -15,14 +15,16 @@ menu::menu(QWidget *parent)
     , ui(new Ui::menu)
 {
     ui->setupUi(this);
-//    QPalette pal =this->palette();
-//    pal.setBrush(QPalette::Background,QBrush(QPixmap(":/images/resource/bg.jpg")));
-//    setPalette(pal);
+    setWindowTitle("无人深空存档手动备份器v1.0");
+//    setWindowOpacity(0.9);
+    QPalette pal =this->palette();
+    pal.setBrush(QPalette::Background,QBrush(QPixmap(":/images/resource/bg1.jpg")));
+    setPalette(pal);
 
-        setWindowOpacity(0.7);
-        QPalette pal = palette();
-        pal.setColor(QPalette::Background, QColor(85, 170, 255));
-        setPalette(pal);
+
+//        QPalette pal = palette();
+//        pal.setColor(QPalette::Background, QColor(85, 170, 255));
+//        setPalette(pal);
 
     QSettings setting(ini_path,QSettings::IniFormat);
     QString recovery_path=setting.value("path/recovery_path").toString();
@@ -137,6 +139,7 @@ void menu::on_open_after_clicked()
 {
     this->update();
 
+
     QSettings setting(ini_path,QSettings::IniFormat);
     QString backup_path=setting.value("path/backup_path").toString();
     if (backup_path.length()>1)
@@ -160,6 +163,25 @@ void menu::on_open_after_clicked()
 
     QString value_path=setting.value("path/backup_path").toString();
     ui->lineEdit_2->setText(value_path);
+
+    ui->listWidget->clear();
+    QString FileFolder = value_path;
+    if(!FileFolder.isEmpty())
+    {
+        QStringList folders = findFolder(FileFolder);
+        for(int i=0; i<folders.size(); i++)
+        {
+
+//        if (folders.at(i).contains("_",Qt::CaseSensitive))
+        if (folders.at(i).contains(QRegularExpression("[0-9]+[_]*")))
+        {
+            ui->listWidget->addItem(folders.at(i));
+//            ui->textEdit->append(QString("子目录:%1").arg(folders.at(i)));
+        }
+        }
+    }
+
+
     this->update();
 
 }

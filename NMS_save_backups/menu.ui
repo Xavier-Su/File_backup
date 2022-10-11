@@ -14,22 +14,22 @@
    <string>menu</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">/*#menu{background-color:rgb(109,132,45);}
+   <string notr="true">#menu{border-image: url(:/images/resource/bg.jpg);}
 QWidget 
 { 
-border-image: url(:/images/resource/bg.jpg);}*/
-QWidget{
-    background-color: rgb(239, 245, 247); /*???*/
+	/*border-image: url(:/images/resource/bg1.jpg);
+    /*background-color: rgb(239, 245, 247); 
     color: black;  /*????*/
+
 }
 
 QPushButton
 {
-    background-color:rgba(218, 231, 230, 1);/*???*/
+    background-color:rgba(238,245,252, 0.8);/*???*/
     border-style:solid;/*???? solid?? none??? inset/outset 3D??*/
     border-width:4px; /*??????*/
     border-radius:10px;/*????????*/
-    border-color:rgba(218, 231, 230, 1);/*????*/
+    border-color:rgba(247,30,34,0.5);/*????*/
     font-size:12pt;/*?? ????*/
     color: black;/*????*/
     padding:6px; /*??*/
@@ -37,17 +37,17 @@ QPushButton
 
 QPushButton:hover
 {
-  background-color:rgba(198,198,190);/*???*/
-    border-color:rgba(205,205,205);/*????*/
+  background-color:rgba(238,245,252, 0.8);/*???*/
+    border-color:rgba(247,30,34,0.5);/*????*/
     color: black;/*????*/
 }
 QLineEdit
 {
-    background-color:rgb(240,240,240);/*???*/
+    background-color:rgba(238,245,252, 0.8);/*???*/
     border-style:solid;/*???? solid?? none??? inset/outset 3D??*/
     border-width:4px; /*??????*/
     border-radius:10px;/*????????*/
-    border-color:rgba(218, 231, 230, 1);/*????*/
+    border-color:rgba(247,30,34,0.5);/*????*/
     font-size:12pt;/*?? ????*/
     color: black;/*????*/
     padding:6px;/*??*/
@@ -55,22 +55,22 @@ QLineEdit
 
 QListWidget
 {
-    background-color:rgb(240,240,240);/*???*/
+    background-color:rgba(238,245,252, 0.8);/*???*/
     border-style:solid;/*???? solid?? none??? inset/outset 3D??*/
     border-width:4px; /*??????*/
     border-radius:10px;/*????????*/
-    border-color:rgba(218, 231, 230, 1);/*????*/
+    border-color:rgba(247,30,34,0.5);/*????*/
     font-size:10pt;/*?? ????*/
     color: black;/*????*/
     padding:6px;/*??*/
 }
 
 QTextEdit {
-    background-color:rgb(240,240,240);/*???*/
+    background-color:rgba(238,245,252, 0.8);/*???*/
     border-style:solid;/*???? solid?? none??? inset/outset 3D??*/
     border-width:4px; /*??????*/
     border-radius:10px;/*????????*/
-    border-color:rgba(218, 231, 230, 1);/*????*/
+    border-color:rgba(247,30,34,0.5);/*????*/
     font-size:10pt;/*?? ????*/
     color: black;/*????*/
     padding:6px; /*??*/
