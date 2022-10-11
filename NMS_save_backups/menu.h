@@ -27,6 +27,7 @@ private slots:
     void on_backup_clicked();
 
     void on_recovery_clicked();
+    QStringList findFolder(QString folder);
 
 private:
     Ui::menu *ui;

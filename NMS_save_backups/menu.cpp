@@ -32,6 +32,22 @@ menu::menu(QWidget *parent)
     ui->lineEdit->setText(recovery_path);
     ui->lineEdit_2->setText(backup_path);
 
+//    QString FileFolder = QFileDialog::getExistingDirectory( this, "choose Directory",  "/");
+    QString FileFolder = backup_path;
+    if(!FileFolder.isEmpty())
+    {
+        QStringList folders = findFolder(FileFolder);
+        for(int i=0; i<folders.size(); i++)
+        {
+
+//        if (folders.at(i).contains("_",Qt::CaseSensitive))
+        if (folders.at(i).contains(QRegularExpression("[0-9]+[_]*")))
+        {
+            ui->listWidget->addItem(folders.at(i));
+//            ui->textEdit->append(QString("子目录:%1").arg(folders.at(i)));
+        }
+        }
+    }
 
 }
 
@@ -115,10 +131,13 @@ void menu::on_backup_clicked()
     qDebug()<<"path="<<dir_now<<endl;
     bool back_ok=copyfile.copyDirectory(path,dir_now,true);
 
+
     if(back_ok){
+        ui->listWidget->addItem(dir_name);
         QMessageBox::information(this,tr("备份提示"),tr("备份成功！"),
                    QMessageBox::Ok,
                    QMessageBox::Ok);
+
     }
     if(!back_ok){
         QMessageBox::information(this,tr("备份提示"),tr("备份失败！"),
@@ -141,4 +160,16 @@ void menu::on_recovery_clicked()
                QMessageBox::Ok | QMessageBox::Cancel,
                QMessageBox::Ok);
 
+}
+
+QStringList menu::findFolder(QString folder)
+{
+    // 获取所有文件夹名
+    QDir dir(folder);
+    folder = dir.fromNativeSeparators(folder);//  "\\"转为"/"
+    QStringList allFolder = QStringList("");
+    dir.setFilter(QDir::Dirs | QDir::NoDotAndDotDot);
+    dir.setSorting(QDir::Name);
+    allFolder = dir.entryList();
+    return  allFolder;
 }
