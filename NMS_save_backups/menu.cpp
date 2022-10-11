@@ -91,9 +91,19 @@ void menu::on_open_clicked()
         }
         if (exist_st!=1)
         {
-            QMessageBox::information(this,tr("目录提示"),tr("该路径没有st_的steam存档文件"),
-                       QMessageBox::Ok,
-                       QMessageBox::Ok);
+            QMessageBox::StandardButton ok=QMessageBox::warning(this,tr("目录提示"),tr("该路径没有st_开头的steam存档文件,是否坚持选择该路径？"),
+                       QMessageBox::Ok | QMessageBox::Cancel,
+                       QMessageBox::Cancel);
+            if (ok==QMessageBox::Ok)
+            {
+                ui->lineEdit->setText(mediafile);
+                setting.setValue("path/recovery_path",mediafile);
+                setting.sync();
+
+                QString value_path=setting.value("path/recovery_path").toString();
+                ui->lineEdit->setText(value_path);
+
+            }
             this->update();
         }
         if (exist_st==1)
