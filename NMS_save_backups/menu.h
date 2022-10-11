@@ -6,6 +6,7 @@
 #include <QStandardPaths>
 #include <QCoreApplication>
 #include <QDebug>
+#include <QListWidgetItem>
 QT_BEGIN_NAMESPACE
 namespace Ui { class menu; }
 QT_END_NAMESPACE
@@ -28,6 +29,8 @@ private slots:
 
     void on_recovery_clicked();
     QStringList findFolder(QString folder);
+
+    void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
 
 private:
     Ui::menu *ui;

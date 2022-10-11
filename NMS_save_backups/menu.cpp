@@ -33,6 +33,7 @@ menu::menu(QWidget *parent)
     ui->lineEdit_2->setText(backup_path);
 
 //    QString FileFolder = QFileDialog::getExistingDirectory( this, "choose Directory",  "/");
+
     QString FileFolder = backup_path;
     if(!FileFolder.isEmpty())
     {
@@ -172,4 +173,10 @@ QStringList menu::findFolder(QString folder)
     dir.setSorting(QDir::Name);
     allFolder = dir.entryList();
     return  allFolder;
+}
+
+void menu::on_listWidget_itemDoubleClicked(QListWidgetItem *item)
+{
+QString dir=item->text();
+ui->textEdit->append(QString("子目录:%1").arg(dir));
 }
