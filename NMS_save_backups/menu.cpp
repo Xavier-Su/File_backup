@@ -190,11 +190,11 @@ void menu::on_backup_clicked()
 
 void menu::on_recovery_clicked()
 {
-//    QString dir_now=path+"_backup";
-//    copy copyfile;
-//    copyfile.isDirExistOrMake(dir_now);
-//    copyfile.copyDirectory(path,dir_now,true);
-//        qDebug()<<"path="<<dir_now<<endl;
+    QString dir_now=path+"_backup";
+    copy copyfile;
+    copyfile.isDirExistOrMake(dir_now);
+    copyfile.copyDirectory(path,dir_now,true);
+        qDebug()<<"path="<<dir_now<<endl;
 //    QMessageBox::information(this,tr("还原提示"),tr("还原成功"),
 //               QMessageBox::Ok | QMessageBox::Cancel,
 //               QMessageBox::Ok);
@@ -206,7 +206,14 @@ void menu::on_recovery_clicked()
         QString backup_now=path_after+"/"+backup_time;
         qDebug()<<"backup_now="<<backup_now<<endl;
 //    copyfile.copyDirectory(path_after,path,true);//会覆盖存档，请确认无误再取消注释。
-
+        QMessageBox::information(this,tr("还原提示"),tr("还原成功，可以重新载入存档"),
+                   QMessageBox::Ok,
+                   QMessageBox::Ok);
+    }else
+    {
+        QMessageBox::information(this,tr("还原提示"),tr("未选择备份的存档文件，请双击列表里已经备份的文件，然后再点击还原。"),
+                   QMessageBox::Ok,
+                   QMessageBox::Ok);
     }
 
 
