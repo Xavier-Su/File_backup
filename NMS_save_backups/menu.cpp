@@ -52,7 +52,7 @@ menu::menu(QWidget *parent)
         {
 
 //        if (folders.at(i).contains("_",Qt::CaseSensitive))
-        if (folders.at(i).contains(QRegularExpression("[0-9]+[_]*")))
+        if (folders.at(i).contains(QRegularExpression("^[0-9]{4}_[0-9]{2}_[0-9]{2}_")))
         {
             ui->listWidget->addItem(folders.at(i));
 //            ui->textEdit->append(QString("子目录:%1").arg(folders.at(i)));
@@ -173,7 +173,7 @@ void menu::on_open_after_clicked()
         {
 
 //        if (folders.at(i).contains("_",Qt::CaseSensitive))
-        if (folders.at(i).contains(QRegularExpression("[0-9]+[_]*")))
+        if (folders.at(i).contains(QRegularExpression("^[0-9]{4}_[0-9]{2}_[0-9]{2}_")))
         {
             ui->listWidget->addItem(folders.at(i));
 //            ui->textEdit->append(QString("子目录:%1").arg(folders.at(i)));
