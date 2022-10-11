@@ -71,19 +71,47 @@ void menu::on_open_clicked()
     }
 
     QString mediafile = QFileDialog::getExistingDirectory(this,notice,path);
-    if(mediafile.length()<=0){
-        return;
-    }
-    if(mediafile.count()!=0){
-        ui->lineEdit->setText(mediafile);
+    if(mediafile.length()<=0){return;}
+    if(mediafile.count()!=0)
+    {
+//        ui->lineEdit->setText(mediafile);
+
+
+        QStringList folders = findFolder(mediafile);
+        int exist_st=0;
+        for(int i=0; i<folders.size(); i++)
+        {
+
+            if (folders.at(i).contains(QRegularExpression("^st_")))//正则匹配文件夹名
+            {
+                exist_st=1;
+                qDebug()<<"folders.at(i)="<<folders.at(i)<<endl;
+
+            }
+        }
+        if (exist_st!=1)
+        {
+            QMessageBox::information(this,tr("目录提示"),tr("该路径没有st_的steam存档文件"),
+                       QMessageBox::Ok,
+                       QMessageBox::Ok);
+            this->update();
+        }
+        if (exist_st==1)
+        {
+            ui->lineEdit->setText(mediafile);
+            setting.setValue("path/recovery_path",mediafile);
+            setting.sync();
+
+            QString value_path=setting.value("path/recovery_path").toString();
+            ui->lineEdit->setText(value_path);
+            QMessageBox::information(this,tr("目录提示"),tr("存储路径成功！"),
+                       QMessageBox::Ok,
+                       QMessageBox::Ok);
+            this->update();
+        }
     }
 
-    setting.setValue("path/recovery_path",mediafile);
-    setting.sync();
 
-    QString value_path=setting.value("path/recovery_path").toString();
-    ui->lineEdit->setText(value_path);
-    this->update();
 }
 
 
@@ -152,14 +180,28 @@ void menu::on_backup_clicked()
 
 void menu::on_recovery_clicked()
 {
-    QString dir_now=path+"_backup";
-    copy copyfile;
-    copyfile.isDirExistOrMake(dir_now);
-    copyfile.copyDirectory(path,dir_now,true);
-        qDebug()<<"path="<<dir_now<<endl;
-    QMessageBox::information(this,tr("还原提示"),tr("还原成功"),
-               QMessageBox::Ok | QMessageBox::Cancel,
-               QMessageBox::Ok);
+//    QString dir_now=path+"_backup";
+//    copy copyfile;
+//    copyfile.isDirExistOrMake(dir_now);
+//    copyfile.copyDirectory(path,dir_now,true);
+//        qDebug()<<"path="<<dir_now<<endl;
+//    QMessageBox::information(this,tr("还原提示"),tr("还原成功"),
+//               QMessageBox::Ok | QMessageBox::Cancel,
+//               QMessageBox::Ok);
+
+    qDebug()<<"path_after="<<path_after<<endl;
+    QString backup_time=ui->textEdit->toPlainText();
+    if (backup_time.contains(QRegularExpression("[0-9]+[_]*")))
+    {
+        QString backup_now=path_after+"/"+backup_time;
+        qDebug()<<"backup_now="<<backup_now<<endl;
+//    copyfile.copyDirectory(path_after,path,true);//会覆盖存档，请确认无误再取消注释。
+
+    }
+
+
+
+
 
 }
 
@@ -178,5 +220,8 @@ QStringList menu::findFolder(QString folder)
 void menu::on_listWidget_itemDoubleClicked(QListWidgetItem *item)
 {
 QString dir=item->text();
-ui->textEdit->append(QString("子目录:%1").arg(dir));
+ui->textEdit->clear();
+ui->textEdit->append(dir);
 }
+
+
