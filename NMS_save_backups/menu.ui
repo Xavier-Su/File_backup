@@ -13,14 +13,17 @@
   <property name="windowTitle">
    <string>menu</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">#menu{border-image:url(:/images/resource/bg.jpg)}</string>
+  </property>
   <widget class="QPushButton" name="open">
    <property name="enabled">
     <bool>true</bool>
    </property>
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>50</y>
+     <x>50</x>
+     <y>140</y>
      <width>100</width>
      <height>50</height>
     </rect>
@@ -29,15 +32,15 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>打开源目录</string>
+    <string>选择源目录</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">
     <rect>
-     <x>240</x>
-     <y>60</y>
-     <width>301</width>
+     <x>160</x>
+     <y>150</y>
+     <width>231</width>
      <height>31</height>
     </rect>
    </property>
@@ -45,22 +48,22 @@
   <widget class="QPushButton" name="open_after">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>220</y>
+     <x>50</x>
+     <y>250</y>
      <width>100</width>
      <height>50</height>
     </rect>
    </property>
    <property name="text">
-    <string>打开备份目录</string>
+    <string>选择备份目录</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_2">
    <property name="geometry">
     <rect>
-     <x>240</x>
-     <y>230</y>
-     <width>301</width>
+     <x>160</x>
+     <y>260</y>
+     <width>231</width>
      <height>31</height>
     </rect>
    </property>
@@ -68,8 +71,8 @@
   <widget class="QPushButton" name="backup">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>130</y>
+     <x>170</x>
+     <y>370</y>
      <width>71</width>
      <height>61</height>
     </rect>
@@ -81,8 +84,8 @@
   <widget class="QPushButton" name="recovery">
    <property name="geometry">
     <rect>
-     <x>430</x>
-     <y>340</y>
+     <x>540</x>
+     <y>360</y>
      <width>71</width>
      <height>61</height>
     </rect>
@@ -94,19 +97,19 @@
   <widget class="QListWidget" name="listWidget">
    <property name="geometry">
     <rect>
-     <x>590</x>
-     <y>40</y>
-     <width>151</width>
-     <height>371</height>
+     <x>480</x>
+     <y>50</y>
+     <width>191</width>
+     <height>231</height>
     </rect>
    </property>
   </widget>
   <widget class="QTextEdit" name="textEdit">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>360</y>
-     <width>271</width>
+     <x>480</x>
+     <y>310</y>
+     <width>191</width>
      <height>31</height>
     </rect>
    </property>
