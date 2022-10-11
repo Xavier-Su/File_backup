@@ -15,6 +15,14 @@ menu::menu(QWidget *parent)
     , ui(new Ui::menu)
 {
     ui->setupUi(this);
+//    QPalette pal =this->palette();
+//    pal.setBrush(QPalette::Background,QBrush(QPixmap(":/images/resource/bg.jpg")));
+//    setPalette(pal);
+
+        setWindowOpacity(0.7);
+        QPalette pal = palette();
+        pal.setColor(QPalette::Background, QColor(85, 170, 255));
+        setPalette(pal);
 
     QSettings setting(ini_path,QSettings::IniFormat);
     QString recovery_path=setting.value("path/recovery_path").toString();
