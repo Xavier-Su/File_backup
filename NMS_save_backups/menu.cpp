@@ -18,7 +18,7 @@ menu::menu(QWidget *parent)
     setWindowTitle("无人深空存档手动备份器v1.0");
 //    setWindowOpacity(0.9);
     QPalette pal =this->palette();
-    pal.setBrush(QPalette::Background,QBrush(QPixmap(":/images/resource/bg1.jpg")));
+    pal.setBrush(QPalette::Background,QBrush(QPixmap(":/images/resource/bg4.png")));
     setPalette(pal);
 
 

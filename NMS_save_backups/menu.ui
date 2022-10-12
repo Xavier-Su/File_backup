@@ -25,29 +25,30 @@ QWidget
 
 QPushButton
 {
-    background-color:rgba(238,245,252, 0.8);/*???*/
-    border-style:solid;/*???? solid?? none??? inset/outset 3D??*/
-    border-width:4px; /*??????*/
-    border-radius:10px;/*????????*/
-    border-color:rgba(247,30,34,0.5);/*????*/
-    font-size:12pt;/*?? ????*/
-    color: black;/*????*/
-    padding:6px; /*??*/
+    font-family: Microsoft Yahei;
+    font:16px;
+    color: white;
+    background-color:rgb( 86,213,220);
+    border-radius: 15px;
+    height:50px;
+    width:200px;
+
 }
 
 QPushButton:hover
 {
-  background-color:rgba(238,245,252, 0.8);/*???*/
+  background-color:rgba(23,157,186, 1);/*???*/
     border-color:rgba(247,30,34,0.5);/*????*/
-    color: black;/*????*/
+    color: /*????*/
 }
 QLineEdit
 {
+    font-family: Microsoft Yahei;
     background-color:rgba(238,245,252, 0.8);/*???*/
     border-style:solid;/*???? solid?? none??? inset/outset 3D??*/
-    border-width:4px; /*??????*/
-    border-radius:10px;/*????????*/
-    border-color:rgba(247,30,34,0.5);/*????*/
+    border-width:2px; /*??????*/
+    border-radius:8px;/*????????*/
+    border-color:rgba(86,213,220,0.5);/*????*/
     font-size:12pt;/*?? ????*/
     color: black;/*????*/
     padding:6px;/*??*/
@@ -55,24 +56,42 @@ QLineEdit
 
 QListWidget
 {
+    font-family: Microsoft Yahei;
     background-color:rgba(238,245,252, 0.8);/*???*/
     border-style:solid;/*???? solid?? none??? inset/outset 3D??*/
-    border-width:4px; /*??????*/
-    border-radius:10px;/*????????*/
-    border-color:rgba(247,30,34,0.5);/*????*/
+    border-width:2px; /*??????*/
+    border-radius:8px;/*????????*/
+    border-color:rgba(86,213,220,0.5);/*????*/
     font-size:10pt;/*?? ????*/
     color: black;/*????*/
     padding:6px;/*??*/
 }
 
 QTextEdit {
+    font-family: Microsoft Yahei;
     background-color:rgba(238,245,252, 0.8);/*???*/
     border-style:solid;/*???? solid?? none??? inset/outset 3D??*/
-    border-width:4px; /*??????*/
-    border-radius:10px;/*????????*/
-    border-color:rgba(247,30,34,0.5);/*????*/
+    border-width:2px; /*??????*/
+    border-radius:8px;/*????????*/
+    border-color:rgba(86,213,220,0.5);/*????*/
     font-size:10pt;/*?? ????*/
     color: black;/*????*/
+    padding:6px; /*??*/
+}
+QLabel {
+    font-family: Microsoft Yahei;
+    background-color:rgba(238,245,252, 0);/*???*/
+    border-radius:8px;/*????????*/
+    font-size:16pt;/*?? ????*/
+    color: white;/*????*/
+    padding:6px; /*??*/
+}
+#label_2 {
+    font-family: Microsoft Yahei;
+    background-color:rgba(238,245,252, 0);/*???*/
+    border-radius:8px;/*????????*/
+    font-size:12pt;/*?? ????*/
+    color: white;/*????*/
     padding:6px; /*??*/
 }</string>
   </property>
@@ -137,6 +156,15 @@ QTextEdit {
      <height>61</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Microsoft Yahei</family>
+     <pointsize>-1</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
    <property name="text">
     <string>备份</string>
    </property>
@@ -158,9 +186,9 @@ QTextEdit {
    <property name="geometry">
     <rect>
      <x>480</x>
-     <y>50</y>
+     <y>60</y>
      <width>191</width>
-     <height>231</height>
+     <height>221</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -175,6 +203,62 @@ QTextEdit {
      <width>191</width>
      <height>41</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>241</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft Yahei</family>
+     <pointsize>16</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>无人深空 真 手动存档器</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>500</x>
+     <y>0</y>
+     <width>151</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft Yahei</family>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>  存档记录列表:
+年_月_日_时_分_秒</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>680</x>
+     <y>310</y>
+     <width>54</width>
+     <height>12</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>被选中的还原存档</string>
    </property>
   </widget>
  </widget>
