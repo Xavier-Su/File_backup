@@ -34,10 +34,10 @@ private slots:
 
 private:
     Ui::menu *ui;
-    QString notice="Which media will play";
+    QString notice="选择存档位置";
     QString path=QDir::homePath()+"/AppData/Roaming/HelloGames/NMS";
     QString path_after="C:/";
-    QString ini_path=QCoreApplication::applicationDirPath()+"/test.ini";
+    QString ini_path=QCoreApplication::applicationDirPath()+"/setting.ini";
 
 
 };

@@ -15,7 +15,7 @@ menu::menu(QWidget *parent)
     , ui(new Ui::menu)
 {
     ui->setupUi(this);
-    setWindowTitle("无人深空存档手动备份器v1.0");
+    setWindowTitle("无人深空存档手动备份器v1.0  -by素白");
 //    setWindowOpacity(0.9);
     QPalette pal =this->palette();
     pal.setBrush(QPalette::Background,QBrush(QPixmap(":/images/resource/bg4.png")));
@@ -37,10 +37,10 @@ menu::menu(QWidget *parent)
     if (backup_path.length()>1)
     {
         path_after=backup_path;
-        ui->lineEdit->setText(backup_path);
+        ui->lineEdit_2->setText(backup_path);
     }
-    ui->lineEdit->setText(recovery_path);
-    ui->lineEdit_2->setText(backup_path);
+//    ui->lineEdit->setText(recovery_path);
+//    ui->lineEdit_2->setText(backup_path);
 
 //    QString FileFolder = QFileDialog::getExistingDirectory( this, "choose Directory",  "/");
 
@@ -235,8 +235,9 @@ void menu::on_recovery_clicked()
     {
         QString backup_now=path_after+"/"+backup_time;
         qDebug()<<"backup_now="<<backup_now<<endl;
+        qDebug()<<"path="<<path<<endl;
 //    copyfile.copyDirectory(path_after,path,true);//会覆盖存档，请确认无误再取消注释。
-        QMessageBox::information(this,tr("还原提示"),tr("还原成功，可以重新载入存档"),
+        QMessageBox::information(this,tr("还原提示"),tr("还原成功，\n可以重新载入存档！"),
                    QMessageBox::Ok,
                    QMessageBox::Ok);
     }else

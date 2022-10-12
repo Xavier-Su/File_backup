@@ -23,21 +23,35 @@ QWidget
 
 }
 
-QPushButton
+QPushButton,QMessageBox QPushButton
 {
     font-family: Microsoft Yahei;
-    font:16px;
+    font: 16px;
+    font-weight: bold;
     color: white;
-    background-color:rgb( 86,213,220);
+    background-color:rgba( 86,213,220,0.8);
     border-radius: 15px;
     height:50px;
     width:200px;
 
 }
 
-QPushButton:hover
+#open,#open_after
 {
-  background-color:rgba(23,157,186, 1);/*???*/
+    font-family: Microsoft Yahei;
+    font: 15px;
+    font-weight: bold;
+    color: white;
+    background-color:rgba( 86,213,220,0.8);
+    border-radius: 15px;
+    height:50px;
+    width:100px;
+
+}
+
+QPushButton:hover,QMessageBox QPushButton:hover
+{
+  background-color:rgba(23,157,186, 0.8);/*???*/
     border-color:rgba(247,30,34,0.5);/*????*/
     color: /*????*/
 }
@@ -86,71 +100,46 @@ QLabel {
     color: white;/*????*/
     padding:6px; /*??*/
 }
-#label_2 {
+#label_2,#label_5 {
     font-family: Microsoft Yahei;
-    background-color:rgba(238,245,252, 0);/*???*/
-    border-radius:8px;/*????????*/
-    font-size:12pt;/*?? ????*/
+    background-color:rgba(238,245,252,0);/*???*/
+    border-radius:3px;/*????????*/
+	font-weight: bold;
+    font-size:10pt;/*?? ????*/
     color: white;/*????*/
     padding:6px; /*??*/
+}
+#label_3,#label_4 {
+    font-family: Microsoft Yahei;
+    background-color:rgba(238,245,252,0.7);/*???*/
+    border-radius:3px;/*????????*/
+	font-weight: bold;
+    font-size:10pt;/*?? ????*/
+	border-style:solid;
+    border-width:2px; /*??????*/
+    border-color:rgba(86,213,220,0);
+    color: rgba(195,51,116,0.8);/*????*/
+    padding:6px; /*??*/
+}
+
+QMessageBox {
+	background-color: rgb(238,245,252); /* QMessageBox???? */
+        font-family: Microsoft Yahei;
+	font:12px;
+	color: black;
+}
+QMessageBox QLabel#qt_msgbox_label { /* textLabel */
+	color: rgba(23,157,186, 1);
+	font:14px;
+	background-color: rgba(238,245,252, 0.6);
+	min-width: 200px; /* textLabel设置最小宽度可以相应的改变QMessageBox的最小宽度 */
+	min-height: 40px; /* textLabel和iconLabel高度保持一致 */
 }</string>
   </property>
-  <widget class="QPushButton" name="open">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>140</y>
-     <width>111</width>
-     <height>50</height>
-    </rect>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>选择源目录</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>140</y>
-     <width>231</width>
-     <height>50</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="open_after">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>230</y>
-     <width>111</width>
-     <height>50</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>选择备份目录</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>230</y>
-     <width>231</width>
-     <height>50</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QPushButton" name="backup">
    <property name="geometry">
     <rect>
-     <x>80</x>
+     <x>60</x>
      <y>360</y>
      <width>200</width>
      <height>61</height>
@@ -160,9 +149,9 @@ QLabel {
     <font>
      <family>Microsoft Yahei</family>
      <pointsize>-1</pointsize>
-     <weight>50</weight>
+     <weight>75</weight>
      <italic>false</italic>
-     <bold>false</bold>
+     <bold>true</bold>
     </font>
    </property>
    <property name="text">
@@ -172,7 +161,7 @@ QLabel {
   <widget class="QPushButton" name="recovery">
    <property name="geometry">
     <rect>
-     <x>480</x>
+     <x>460</x>
      <y>360</y>
      <width>200</width>
      <height>61</height>
@@ -185,10 +174,10 @@ QLabel {
   <widget class="QListWidget" name="listWidget">
    <property name="geometry">
     <rect>
-     <x>480</x>
-     <y>60</y>
-     <width>191</width>
-     <height>221</height>
+     <x>460</x>
+     <y>70</y>
+     <width>201</width>
+     <height>211</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -198,18 +187,18 @@ QLabel {
   <widget class="QTextEdit" name="textEdit">
    <property name="geometry">
     <rect>
-     <x>480</x>
-     <y>300</y>
-     <width>191</width>
-     <height>41</height>
+     <x>460</x>
+     <y>290</y>
+     <width>201</width>
+     <height>51</height>
     </rect>
    </property>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>10</y>
+     <x>100</x>
+     <y>20</y>
      <width>241</width>
      <height>51</height>
     </rect>
@@ -230,15 +219,15 @@ QLabel {
    <property name="geometry">
     <rect>
      <x>500</x>
-     <y>0</y>
-     <width>151</width>
-     <height>61</height>
+     <y>10</y>
+     <width>131</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>Microsoft Yahei</family>
-     <pointsize>12</pointsize>
+     <pointsize>10</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -251,14 +240,91 @@ QLabel {
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>680</x>
-     <y>310</y>
-     <width>54</width>
-     <height>12</height>
+     <x>670</x>
+     <y>290</y>
+     <width>71</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="text">
-    <string>被选中的还原存档</string>
+    <string>已选存档</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="horizontalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>70</y>
+     <width>341</width>
+     <height>52</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_4">
+    <item>
+     <widget class="QPushButton" name="open">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="mouseTracking">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>选择源目录</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEdit"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="horizontalLayoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>190</y>
+     <width>339</width>
+     <height>78</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_5">
+    <item>
+     <widget class="QPushButton" name="open_after">
+      <property name="text">
+       <string>选择备份目录</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEdit_2"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>670</x>
+     <y>150</y>
+     <width>71</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>双击选择
+还原存档</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>120</y>
+     <width>341</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>无人深空存档一般在C:/.../HelloGames/NMS的位置</string>
    </property>
   </widget>
  </widget>
