@@ -4,5 +4,6 @@
         <file>resource/bg1.jpg</file>
         <file>resource/bg2.jpg</file>
         <file>resource/bg4.png</file>
+        <file>resource/icon.png</file>
     </qresource>
 </RCC>
