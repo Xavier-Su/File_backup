@@ -19,7 +19,7 @@ menu::menu(QWidget *parent)
     this->setWindowIcon(QIcon(":/images/resource/icon.png"));
 //    setWindowOpacity(0.9);
     QPalette pal =this->palette();
-    pal.setBrush(QPalette::Background,QBrush(QPixmap(":/images/resource/bg4.png")));
+    pal.setBrush(QPalette::Background,QBrush(QPixmap(":/images/resource/bg4.png")));//背景图片
     setPalette(pal);
 
     QSettings setting(ini_path,QSettings::IniFormat);
@@ -28,13 +28,13 @@ menu::menu(QWidget *parent)
     {
         path=recovery_path;
         ui->lineEdit->setText(recovery_path);
-    }
+    }//读配置文件
     QString backup_path=setting.value("path/backup_path").toString();
     if (backup_path.length()>1)
     {
         path_after=backup_path;
         ui->lineEdit_2->setText(backup_path);
-    }
+    }//读配置文件
 
     ui->listWidget->clear();
     QString FileFolder = backup_path;
@@ -52,7 +52,7 @@ menu::menu(QWidget *parent)
 //            ui->textEdit->append(QString("子目录:%1").arg(folders.at(i)));
         }
         }
-    }
+    }//刷新记录列表
 
 }
 
@@ -167,7 +167,7 @@ void menu::on_open_after_clicked()
         for(int i=0; i<folders.size(); i++)
         {
 
-//        if (folders.at(i).contains("_",Qt::CaseSensitive))
+
         if (folders.at(i).contains(QRegularExpression("^[0-9]{4}_[0-9]{2}_[0-9]{2}_")))
         {
             ui->listWidget->addItem(folders.at(i));
@@ -189,7 +189,6 @@ void menu::on_backup_clicked()
     copy copyfile;
     QString dir_now=path_after+"/"+dir_name;
     copyfile.isDirExistOrMake(dir_now);
-//    copyfile.copyFile("C:/game/1/2.txt","C:/game/4.txt",true);
     qDebug()<<"path="<<path<<endl;
     qDebug()<<"path="<<path_after<<endl;
     qDebug()<<"path="<<dir_now<<endl;
