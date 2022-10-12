@@ -22,11 +22,6 @@ menu::menu(QWidget *parent)
     pal.setBrush(QPalette::Background,QBrush(QPixmap(":/images/resource/bg4.png")));
     setPalette(pal);
 
-
-//        QPalette pal = palette();
-//        pal.setColor(QPalette::Background, QColor(85, 170, 255));
-//        setPalette(pal);
-
     QSettings setting(ini_path,QSettings::IniFormat);
     QString recovery_path=setting.value("path/recovery_path").toString();
     if (recovery_path.length()>3)
@@ -40,10 +35,7 @@ menu::menu(QWidget *parent)
         path_after=backup_path;
         ui->lineEdit_2->setText(backup_path);
     }
-//    ui->lineEdit->setText(recovery_path);
-//    ui->lineEdit_2->setText(backup_path);
 
-//    QString FileFolder = QFileDialog::getExistingDirectory( this, "choose Directory",  "/");
     ui->listWidget->clear();
     QString FileFolder = backup_path;
     if(!FileFolder.isEmpty())
@@ -86,7 +78,7 @@ void menu::on_open_clicked()
     if(mediafile.length()<=0){return;}
     if(mediafile.count()!=0)
     {
-//        ui->lineEdit->setText(mediafile);
+
 
 
         QStringList folders = findFolder(mediafile);
