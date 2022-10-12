@@ -197,9 +197,9 @@ QMessageBox QLabel#qt_msgbox_label { /* textLabel */
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>100</x>
+     <x>90</x>
      <y>20</y>
-     <width>241</width>
+     <width>291</width>
      <height>51</height>
     </rect>
    </property>
@@ -212,7 +212,7 @@ QMessageBox QLabel#qt_msgbox_label { /* textLabel */
     </font>
    </property>
    <property name="text">
-    <string>无人深空 真 手动存档器</string>
+    <string>无人深空 真 手动存档备份</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
@@ -282,9 +282,9 @@ QMessageBox QLabel#qt_msgbox_label { /* textLabel */
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>190</y>
+     <y>230</y>
      <width>339</width>
-     <height>78</height>
+     <height>51</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_5">

@@ -29,7 +29,7 @@ menu::menu(QWidget *parent)
 
     QSettings setting(ini_path,QSettings::IniFormat);
     QString recovery_path=setting.value("path/recovery_path").toString();
-    if (recovery_path.length()>1)
+    if (recovery_path.length()>3)
     {
         path=recovery_path;
         ui->lineEdit->setText(recovery_path);
@@ -44,10 +44,11 @@ menu::menu(QWidget *parent)
 //    ui->lineEdit_2->setText(backup_path);
 
 //    QString FileFolder = QFileDialog::getExistingDirectory( this, "choose Directory",  "/");
-
+    ui->listWidget->clear();
     QString FileFolder = backup_path;
     if(!FileFolder.isEmpty())
     {
+
         QStringList folders = findFolder(FileFolder);
         for(int i=0; i<folders.size(); i++)
         {
@@ -75,7 +76,7 @@ void menu::on_open_clicked()
 
     QSettings setting(ini_path,QSettings::IniFormat);
     QString recovery_path=setting.value("path/recovery_path").toString();
-    if (recovery_path.length()>1)
+    if (recovery_path.length()>3)
     {
         path=recovery_path;
         ui->lineEdit->setText(path);
@@ -156,6 +157,7 @@ void menu::on_open_after_clicked()
         return;
     }
     if(mediafile_after.count()!=0){
+        path_after=mediafile_after;
         ui->lineEdit_2->setText(mediafile_after);
     }
 
