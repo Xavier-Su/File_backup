@@ -17,7 +17,7 @@ menu::menu(QWidget *parent)
     ui->setupUi(this);
     setWindowTitle("无人深空存档手动备份器v1.0  -by素白");
     this->setWindowIcon(QIcon(":/images/resource/icon.png"));
-//    setWindowOpacity(0.9);
+//    setWindowOpacity(0.9);//窗口透明
     QPalette pal =this->palette();
     pal.setBrush(QPalette::Background,QBrush(QPixmap(":/images/resource/bg4.png")));//背景图片
     setPalette(pal);
@@ -45,8 +45,7 @@ menu::menu(QWidget *parent)
         for(int i=0; i<folders.size(); i++)
         {
 
-//        if (folders.at(i).contains("_",Qt::CaseSensitive))
-        if (folders.at(i).contains(QRegularExpression("^[0-9]{4}_[0-9]{2}_[0-9]{2}_")))
+        if (folders.at(i).contains(QRegularExpression("^[0-9]{4}_[0-9]{2}_[0-9]{2}_")))//正则匹配文件夹名
         {
             ui->listWidget->addItem(folders.at(i));
 //            ui->textEdit->append(QString("子目录:%1").arg(folders.at(i)));
@@ -62,6 +61,7 @@ menu::~menu()
 }
 
 
+//选择源目录按钮功能
 void menu::on_open_clicked()
 {
     this->update();
@@ -128,7 +128,7 @@ void menu::on_open_clicked()
 
 }
 
-
+//打开备份目录按钮功能
 void menu::on_open_after_clicked()
 {
     this->update();
@@ -180,7 +180,7 @@ void menu::on_open_after_clicked()
     this->update();
 
 }
-
+//备份按钮功能
 void menu::on_backup_clicked()
 {
     QDateTime dateTime(QDateTime::currentDateTime());
@@ -211,7 +211,7 @@ void menu::on_backup_clicked()
 
 
 }
-
+//恢复存档按钮的功能
 void menu::on_recovery_clicked()
 {
     QString dir_now=path+"_backup";
@@ -247,6 +247,7 @@ void menu::on_recovery_clicked()
 
 }
 
+//查所在目录的所有文件夹名
 QStringList menu::findFolder(QString folder)
 {
     // 获取所有文件夹名
@@ -258,7 +259,7 @@ QStringList menu::findFolder(QString folder)
     allFolder = dir.entryList();
     return  allFolder;
 }
-
+//双击备份列表条目功能
 void menu::on_listWidget_itemDoubleClicked(QListWidgetItem *item)
 {
 QString dir=item->text();
