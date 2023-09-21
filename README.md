@@ -5,6 +5,7 @@ release文件夹已经打包1.0版本
 
 软件是NMS_save_backups.exe，解压后进来就能看见。  
 预览图：
+
 ![image](https://github.com/Xavier-Su/File_backup/blob/main/NMS_save_backups/resource/menu.png)
 
 ### 简略说下操作方式：（后面还有详细说的）  
